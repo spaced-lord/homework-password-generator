@@ -10,7 +10,7 @@ function generatePassword() {
   var criteria = [] 
   var randomize = []
 
-  var count = (function ask(){
+  var count = (function ask() {
     var n = prompt("How many characters are needed in your new password (more than 8, less than 128)?")
     return isNaN(n) || +n > 128 || -n < 8 ? ask() : n;
 }) ();
@@ -19,39 +19,51 @@ function generatePassword() {
       var lower = confirm("Do you wish to use lowercase letters?"); 
       if (lower == true) {
         return lower.push(userInput);
-      } else null
+      } else {
+        null
+      }
       
       var upper = confirm("Do you wish to use uppercase letters?");
       if (upper == true) {
         return upper.push(userInput);
-      } else null
+      } else {
+        null
+      }
 
       var numbers = confirm("Do you wish to use numbers?");
       if (numbers == true) {
         return numbers.push(userInput);
-      } else null
+      } else {
+        null
+      }
 
       var symbols = confirm("Do you wish to use special characters (!,#,&,$, etc.)?");
       if (symbols == true) {
         return symbols.push(userInput);
-      } else null
+      } else { 
+        null
+      }
 
         for(i = 0; i < userInput.length; i++) {
           var criteria = userInput[i];
-        }
-    }
+        }  
+          if (criteria ) {
+           while( i < 128 || i >8 ) {
 
+           } 
+             
+
+           }
+        
+    }
+      console.log(criteria)
 // call function, define that function, take confirm to see if all are false, call back if so. 
 // If statements if confirm is true to .push from respective array into userInput. 
-// for loop for length of userInput array. determines the length of a new array that you will while if else, splice, another for loop that randomize (math.floor(math.randow), 
+// for loop for length of userInput array. determines the length of a new array that you will while if else, splice, another for loop that randomize (math.floor(math.random), 
 // Take array and make it a string and return the string.
 
 // make two more arrays under userInput.
 
-// var lower = confirm("Do you wish to use lowercase letters?"); 
-// var upper = confirm("Do you wish to use uppercase letters?");
-// var numbers = confirm("Do you wish to use numbers?");
-// var specialChar = confirm("Do you wish to use special characters (!,#,&,$, etc.)?");
 
 
 console.log(getPassword())
