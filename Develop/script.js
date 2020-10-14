@@ -4,6 +4,8 @@ var lowercase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"
 var numbersArray = ["0","1","2","3","4","5","6","7","8","9"]
 var symbolsArray = ["!","@","#","$","%","^","&","*","(",")"]
 
+
+// Takes in user input and checks that all varibles are present.
 function getPasswordOptions()  {
   var n = prompt("How many characters are needed in your new password (more than 8, less than 128)?")
     if (isNaN(n) || n < 8 || n > 128) {
@@ -32,7 +34,7 @@ function getRandom(arr) {
   return randomEl
 }
 
-
+// Notes all possible characters and .push them to a single array.
 
 function generatePassword() {
   var result = []
@@ -58,13 +60,16 @@ function generatePassword() {
     possibleCharacters = possibleCharacters.concat(symbolsArray)
     garuanteedCharacters.push(getRandom(symbolsArray))
   }
+
+  // for loops used to randomize array
+  
   //  Needs two loops; first loop goes through options.length. will push a random character from possibleCharacters array to the result array
     for(i=0; i < options.length; i++) {
       possibleCharacters.push(result);
   }
 
     for(i=0; i < garuanteedCharacters.length; i++) {
-      result = garuanteedCharacters[i];
+      resultIndex[i] = garuanteedCharacters[i];
     }
   
     // loop goes through garuanteedCharacters resultIndex[i] = garuanteedCharacters[i]
