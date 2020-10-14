@@ -16,7 +16,7 @@ function getPasswordOptions()  {
     var numbers = confirm("Do you wish to use numbers?");
     var symbols = confirm("Do you wish to use special characters (!,#,&,$, etc.)?");
     if (lower === false && upper === false && numbers === false && symbols === false) {
-      alert("Must make a selection.")
+      alert("Please, make a selection.")
       return
     } 
     var passwordOptions = {
@@ -34,7 +34,7 @@ function getRandom(arr) {
   return randomEl
 }
 
-// Notes all possible characters and .push them to a single array.
+// Notes all possible characters
 
 function generatePassword() {
   var result = []
@@ -44,40 +44,30 @@ function generatePassword() {
 
   if (options.lower === true) {
     possibleCharacters = possibleCharacters.concat(lowercase)
-    garuanteedCharacters.push(getRandom(lowercase))
+    
   } 
 
   if (options.upper === true) {
     possibleCharacters = possibleCharacters.concat(uppercase)
-    garuanteedCharacters.push(getRandom(uppercase))
+  
   }
-  if (options.number === true) {
-    possibleCharacters = possibleCharacters.concat(numbers)
-    garuanteedCharacters.push(getRandom(numbersArray))
+  if (options.numbers === true) {
+    possibleCharacters = possibleCharacters.concat(numbersArray)
   }
 
   if (options.symbols === true) {
     possibleCharacters = possibleCharacters.concat(symbolsArray)
-    garuanteedCharacters.push(getRandom(symbolsArray))
   }
 
-  // for loops used to randomize array
+  console.log(garuanteedCharacters)
+  // for loops to randomize array
+
   
-  //  Needs two loops; first loop goes through options.length. will push a random character from possibleCharacters array to the result array
     for(i=0; i < options.length; i++) {
-      possibleCharacters.push(result);
+      result.push(getRandom(possibleCharacters));
   }
-
-    for(i=0; i < garuanteedCharacters.length; i++) {
-      resultIndex[i] = garuanteedCharacters[i];
-    }
   
-    // loop goes through garuanteedCharacters resultIndex[i] = garuanteedCharacters[i]
-
-
-
-
-
+  console.log(possibleCharacters)
 
 
   return result.join("")
