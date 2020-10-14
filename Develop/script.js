@@ -1,90 +1,93 @@
 
 var uppercase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 var lowercase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-var numbers = ["0","1","2","3","4","5","6","7","8","9"]
-var symbols = ["!","@","#","$","%","^","&","*","(",")"]
+var numbersArray = ["0","1","2","3","4","5","6","7","8","9"]
+var symbolsArray = ["!","@","#","$","%","^","&","*","(",")"]
+
+function getPasswordOptions()  {
+  var n = prompt("How many characters are needed in your new password (more than 8, less than 128)?")
+    if (isNaN(n) || n < 8 || n > 128) {
+      return
+    }
+    var lower = confirm("Do you wish to use lowercase letters?"); 
+    var upper = confirm("Do you wish to use uppercase letters?");
+    var numbers = confirm("Do you wish to use numbers?");
+    var symbols = confirm("Do you wish to use special characters (!,#,&,$, etc.)?");
+    if (lower === false && upper === false && numbers === false && symbols === false) {
+      alert("Must make a selection.")
+      return
+    } 
+    var passwordOptions = {
+      length: n,
+      lower: lower,
+      upper: upper,
+      numbers: numbers,
+      symbols: symbols,
+    } 
+    return passwordOptions
+}
+function getRandom(arr) {
+  var randomIndex = Math.floor(Math.random() * arr.length)
+  var randomEl = arr[randomIndex]
+  return randomEl
+}
+
+
 
 function generatePassword() {
+  var result = []
+  var possibleCharacters = []
+  var garuanteedCharacters = []
+  var options = getPasswordOptions()
 
-  var userInput = []
-  var criteria = [] 
-  var randomize = []
+  if (options.lower === true) {
+    possibleCharacters = possibleCharacters.concat(lowercase)
+    garuanteedCharacters.push(getRandom(lowercase))
+  } 
 
-  var count = (function ask() {
-    var n = prompt("How many characters are needed in your new password (more than 8, less than 128)?")
-    return isNaN(n) || +n > 128 || -n < 8 ? ask() : n;
-}) ();
+  if (options.upper === true) {
+    possibleCharacters = possibleCharacters.concat(uppercase)
+    garuanteedCharacters.push(getRandom(uppercase))
+  }
+  if (options.number === true) {
+    possibleCharacters = possibleCharacters.concat(numbers)
+    garuanteedCharacters.push(getRandom(numbersArray))
+  }
 
-    function characters() {
-      var lower = confirm("Do you wish to use lowercase letters?"); 
-      if (lower == true) {
-        return lower.push(userInput);
-      } else {
-        null
-      }
-      
-      var upper = confirm("Do you wish to use uppercase letters?");
-      if (upper == true) {
-        return upper.push(userInput);
-      } else {
-        null
-      }
+  if (options.symbols === true) {
+    possibleCharacters = possibleCharacters.concat(symbolsArray)
+    garuanteedCharacters.push(getRandom(symbolsArray))
+  }
+  //  Needs two loops; first loop goes through options.length. will push a random character from possibleCharacters array to the result array
+    for(i=0; i < options.length; i++) {
+      possibleCharacters.push(result);
+  }
 
-      var numbers = confirm("Do you wish to use numbers?");
-      if (numbers == true) {
-        return numbers.push(userInput);
-      } else {
-        null
-      }
-
-      var symbols = confirm("Do you wish to use special characters (!,#,&,$, etc.)?");
-      if (symbols == true) {
-        return symbols.push(userInput);
-      } else { 
-        null
-      }
-
-        for(i = 0; i < userInput.length; i++) {
-          var criteria = userInput[i];
-        }  
-          if (criteria ) {
-           while( i < 128 || i >8 ) {
-
-           } 
-             
-
-           }
-        
+    for(i=0; i < garuanteedCharacters.length; i++) {
+      result = garuanteedCharacters[i];
     }
-      console.log(criteria)
-// call function, define that function, take confirm to see if all are false, call back if so. 
-// If statements if confirm is true to .push from respective array into userInput. 
-// for loop for length of userInput array. determines the length of a new array that you will while if else, splice, another for loop that randomize (math.floor(math.random), 
-// Take array and make it a string and return the string.
-
-// make two more arrays under userInput.
+  
+    // loop goes through garuanteedCharacters resultIndex[i] = garuanteedCharacters[i]
 
 
 
-console.log(getPassword())
 
 
+
+
+  return result.join("")
+}
+  
+ 
+
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(); 
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
-  
- // Add event listener to generate button
+// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-var generateBtn = document.querySelector("#generate");
-
-   
-
-  
-
-}
